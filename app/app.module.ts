@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { JsonpModule } from '@angular/http';
+import { JsonpModule, HttpModule } from '@angular/http';
 
 import { AppComponent }   from './app.component';
 import { WeatherComponent } from './weather-widget/component/weather.component';
@@ -10,7 +10,8 @@ import { TempUnitPipe } from './weather-widget/pipe/temp-unit-pipe';
 
 @NgModule({
   imports:      [ BrowserModule, 
-                  JsonpModule ],
+                  JsonpModule,
+                  HttpModule ],
   declarations: [ AppComponent,
                   WeatherComponent,
                   SpeedUnitPipe,
