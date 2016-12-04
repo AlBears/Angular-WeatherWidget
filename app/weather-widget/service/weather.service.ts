@@ -9,6 +9,7 @@ import { FORECAST_KEY, FORECAST_ROOT } from '../constants/constants';
 @Injectable()
 export class WeatherService {
     constructor(private jsonp: Jsonp) { }
+    
     getCurrentLocation(): Observable<any> {
         if (navigator.geolocation) {
             return Observable.create(observer => {
