@@ -15,6 +15,7 @@ import { WeatherService } from '../service/weather.service';
 export class WeatherComponent implements OnInit {
     pos: Position;
     weatherData = new Weather(null, null, null, null, null);
+    currentSpeedUnit = "kph";
 
     constructor(private service: WeatherService){ }
 
