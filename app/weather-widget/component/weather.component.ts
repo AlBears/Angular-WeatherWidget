@@ -4,6 +4,8 @@ import { Weather } from '../model/weather';
 
 import { WeatherService } from '../service/weather.service';
 
+import { WEATHER_COLORS } from '../constants/constants';
+
 declare var Skycons: any;
 
 @Component({
@@ -20,12 +22,14 @@ export class WeatherComponent implements OnInit {
     currentSpeedUnit = "kph";
     currentTempUnit = "celsius";
     currentLocation = '';
-    icons = new Skycons({"color": "#FFF"});
+    icons = new Skycons();
+    dataReceived = false;
 
     constructor(private service: WeatherService){ }
 
     ngOnInit(){
         this.getCurrentLocation();
+        console.log(this.setStyles())
     }
 
     getCurrentLocation() {
@@ -48,6 +52,7 @@ export class WeatherComponent implements OnInit {
                 this.weatherData.icon = weather["currently"]["icon"]
                 console.log("Weather: ", this.weatherData)
                 this.setIcon();
+                this.dataReceived = true;
             },
             err => console.error(err));
     }
@@ -84,5 +89,15 @@ export class WeatherComponent implements OnInit {
     setIcon() {
         this.icons.add("icon", this.weatherData.icon);
         this.icons.play();
+    }
+
+    setStyles(): Object {
+        if(this.weatherData.icon) {
+            this.icons.color = WEATHER_COLORS[this.weatherData.icon]['color'];
+            return WEATHER_COLORS[this.weatherData.icon];
+        } else {
+            this.icons.color = WEATHER_COLORS['default']['color'];
+            return WEATHER_COLORS["default"];
+        }
     }
 }
