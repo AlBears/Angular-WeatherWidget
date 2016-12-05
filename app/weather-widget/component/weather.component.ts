@@ -29,7 +29,6 @@ export class WeatherComponent implements OnInit {
 
     ngOnInit(){
         this.getCurrentLocation();
-        console.log(this.setStyles())
     }
 
     getCurrentLocation() {
@@ -60,7 +59,6 @@ export class WeatherComponent implements OnInit {
     getLocationName() {
         this.service.getLocationName(this.pos.coords.latitude, this.pos.coords.longitude)
             .subscribe(location => {
-                console.log(location);
                 this.currentLocation = location["results"][1]['formatted_address'];
             })
     }
