@@ -98,4 +98,7 @@ export class WeatherComponent implements OnInit {
             return WEATHER_COLORS["default"];
         }
     }
+    refresh(){
+        this.getCurrentWeather();
+    }
 }
